@@ -142,7 +142,11 @@ namespace MainForm
 
         private void settingsB_Click(object sender, EventArgs e)//Раздел "Настройки"
         {
-            
+            checkButtonsColors((int)Buttons.Settings);
+
+            tabContr.SelectedIndex = (int)Buttons.Settings;
+
+            whatButtonClicked = (int)Buttons.Settings;
         }
 
         private void helpB_Click(object sender, EventArgs e)//Раздел "Помощь"
