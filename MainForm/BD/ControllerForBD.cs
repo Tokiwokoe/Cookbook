@@ -822,6 +822,26 @@ namespace bd
 
         }
 
+        public static void loadAllDate( Recipe r)
+        {
+
+            NpgsqlConnection connection = new NpgsqlConnection(configConnection);
+            connection.Open();
+            string textCommand = "";
+            textCommand = $"Select ingredients, guide  from recipes where id = {r.Id}";
+            var command = new NpgsqlCommand(textCommand, connection);
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                r.Guide = reader.GetString(1);
+                r.Ingredients = reader.GetString(0);
+            }
+
+            reader.Close();
+            connection.Close();
+        }
+
 
         public static void editRecipe(long id, string name, string category, string ingredients, string guide, string marklike, string markdif, string time, byte[] image)
         {
