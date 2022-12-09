@@ -470,7 +470,14 @@ namespace MainForm
         
         public void changeFavourite(Recipe r)
         {
-
+            if (r.Star)
+            {
+                ControllerForBD.setStar(r.Id, false);
+            }
+            else
+            {
+                ControllerForBD.setStar(r.Id, true);
+            }
         }
 
         public void fullRecipe(int id, int whatBu)//Заполнение рецепта при нажатии
