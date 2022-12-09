@@ -9,5 +9,5 @@ namespace bd
     internal static class Search
     {
     }
-   
+
 }
