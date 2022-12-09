@@ -201,12 +201,24 @@ namespace MainForm
 
         private void pictureBox3_Click(object sender, EventArgs e)//Star3
         {
-
+            whatClicked = (int)Star_Marks.Mark3;
+            pictureBox1.Image = Image.FromFile(ImageFileNameFull);
+            pictureBox2.Image = Image.FromFile(ImageFileNameFull);
+            pictureBox3.Image = Image.FromFile(ImageFileNameFull);
+            pictureBox4.Image = Image.FromFile(ImageFileNameOpacity);
+            pictureBox5.Image = Image.FromFile(ImageFileNameOpacity);
         }
 
         private void pictureBox3_MouseMove(object sender, MouseEventArgs e)
         {
-
+            if (whatClicked == (int)Star_Marks.NoMark)
+            {
+                pictureBox1.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox2.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox3.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox4.Image = Image.FromFile(ImageFileNameOpacity);
+                pictureBox5.Image = Image.FromFile(ImageFileNameOpacity);
+            }
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)//Star4
