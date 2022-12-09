@@ -553,7 +553,13 @@ namespace MainForm
 
         private void button1_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Загрузка начата.");
 
+            ControllerForBD.StartSelectAllFileRecipes();
+
+            thread = new Thread(loadAllRecipesIntoFile);
+
+            thread.Start();
         }
 
         private void btnChangePos()
