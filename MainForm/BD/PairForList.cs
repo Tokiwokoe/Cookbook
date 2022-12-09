@@ -9,7 +9,6 @@ namespace MainForm.BD
 
     public class PairForList
     {
-
         public double index;
         public long id;
         public PairForList(long id, double index)
