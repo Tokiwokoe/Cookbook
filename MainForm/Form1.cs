@@ -127,7 +127,82 @@ namespace MainForm
 
         private void favB_Click(object sender, EventArgs e)//Раздел "Избранное"
         {
+            checkButtonsColors((int)Buttons.Fav_Rec);
 
+            tabContr.SelectedIndex = (int)Buttons.Fav_Rec;
+
+            if (whatButtonClicked != (int)Buttons.Fav_Rec)
+            {
+                ControllerForBD.StartSelectAllStarRecipes();
+
+                thread = new Thread(showAllFavRecipes);
+
+                thread.Start();
+            }
+
+            whatButtonClicked = (int)Buttons.Fav_Rec;
+        }
+
+        public void showAllFavRecipes()//Вывести "Избранные"
+        {
+            Action action = () => fav_recipes_list.Controls.Clear();
+
+            if (InvokeRequired) { Invoke(action); }
+
+            else { fav_recipes_list.Controls.Clear(); }
+
+            i = counter = 0;
+
+            bool isAll = false;
+
+            isRecipe = false;
+
+            fav_recipes_list.Invoke((MethodInvoker)delegate {
+
+                fav_recipes_list.Enabled = false;
+            });
+
+            while (!isAll)
+            {
+                if (ControllerForBD.isStartStar)
+                {
+                    if (ControllerForBD.starRecipes.Count != 0)
+                    {
+                        isRecipe = true;
+
+                        Recipe r = ControllerForBD.starRecipes.ElementAt(0);
+
+                        var t = createTableForRecipes(r);
+
+                        fav_recipes_list.BeginInvoke((MethodInvoker)(() => fav_recipes_list.Controls.Add(t)));
+
+                        ControllerForBD.starRecipes.Remove(r);
+
+                    }
+                    if ((ControllerForBD.starRecipes.Count == 0) && (ControllerForBD.isDoneStar))
+                    {
+                        isAll = true;
+
+                        if (!isRecipe)
+                        {
+                            fav_recipes_list.BeginInvoke((MethodInvoker)(() => fav_recipes_list.Controls.Add(pbForNoRec())));
+
+                            fav_recipes_list.BeginInvoke((MethodInvoker)(() => fav_recipes_list.Controls.Add(labelForNoRec())));
+                        }
+                    }
+                }
+                else
+                {
+                    if ((ControllerForBD.isDoneStar))
+                    {
+                        isAll = true;
+                    }
+                }
+            }
+            fav_recipes_list.Invoke((MethodInvoker)delegate {
+
+                fav_recipes_list.Enabled = true;
+            });
         }
 
         private void generalB_Click(object sender, EventArgs e)
