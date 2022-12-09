@@ -287,10 +287,28 @@ namespace MainForm
 
         private void CancelB_Click(object sender, EventArgs e)//Очистка формы рецепта
         {
+            cleanAddRecForm();
         }
 
         private void cleanAddRecForm()
         {
+            rec_name.Clear();
+
+            markDif.SelectedIndex = 0;
+
+            time_rec.Clear();
+
+            CategoryCB.SelectedIndex = 0;
+
+            Ingr_rec.Clear();
+
+            Instr_rec.Clear();
+
+            whatClicked = (int)Star_Marks.NoMark;
+
+            allStarsOpacityNull();
+
+            RecPhoto.Image = Image.FromFile(ImageAddRec);//SizeMode??????
         }
 
         private void allStarsOpacityNull()//Сделать все звёзды прозрачными
