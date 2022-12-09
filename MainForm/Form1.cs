@@ -137,7 +137,35 @@ namespace MainForm
 
         private void addRecB_Click(object sender, EventArgs e)//Раздел "Добавление рецепта"
         {
-            
+            isPhoto = false;
+
+            cleanAddRecForm();
+
+            if (!RecReadyB.Visible)
+            {
+                RecReadyB.Show();
+            }
+
+            if (!CancelB.Visible)
+            {
+                CancelB.Show();
+            }
+
+            if (updateRecB.Visible)
+            {
+                updateRecB.Hide();
+            }
+
+            if (deleteRecB.Visible)
+            {
+                deleteRecB.Hide();
+            }
+
+            checkButtonsColors((int)Buttons.Add_Rec);
+
+            tabContr.SelectedIndex = (int)Buttons.Add_Rec;
+
+            whatButtonClicked = (int)Buttons.Add_Rec;
         }
 
         private void settingsB_Click(object sender, EventArgs e)//Раздел "Настройки"
@@ -273,7 +301,18 @@ namespace MainForm
 
         private void RecReadyB_Click(object sender, EventArgs e)//Добавление рецепта в таблицу "Мои рецепты"
         {
-           
+           checkRecForm();
+
+            if (ControllerForBD.InsertToMyRecipes(rec_name.Text, CategoryCB.Text, Ingr_rec.Text, Instr_rec.Text, whatClicked.ToString(), markDif.Text, time_rec.Text, isPhoto ? Instruments.convertImageIntoB(this.RecPhoto.Image) : null))
+            {
+                MessageBox.Show("Рецепт успешно добавлен.", "Добавление рецепта", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+               // cleanAddRecForm();
+            }
+            else
+            {
+                MessageBox.Show("Что-то пошло не так.", "Добавление рецепта");
+            }
         }
 
         
