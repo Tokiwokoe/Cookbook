@@ -44,6 +44,8 @@ namespace MainForm
 
         public int whatButtonClicked = -1;//Какой раздел выбран
 
+        public string ImageFileNameStartPage = Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().Length - 27) + "images\\Main_start_page.png";
+
         public string ImageFileNameMyRecB = Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().Length - 27) + "images\\my_rec.png";
 
         public string ImageFileNameFavB = Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().Length - 27) + "images\\fav_rec.png";
@@ -219,9 +221,45 @@ namespace MainForm
            
         }
 
+        
+
         public void checkRecForm()
         {
-            
+            if (rec_name.Text == String.Empty)
+            {
+
+                return;
+            }
+
+            if (Instr_rec.Text == String.Empty)
+            {
+
+                return;
+            }
+
+            if (Ingr_rec.Text == String.Empty)
+            {
+
+                return;
+            }
+
+            time_rec.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+
+            if (String.IsNullOrEmpty(time_rec.Text) || String.IsNullOrWhiteSpace(time_rec.Text) || time_rec.Text.Length != 6)
+            {
+                return;
+            }
+
+            if (int.Parse(time_rec.Text[2].ToString() + time_rec.Text[3].ToString()) >= 60 || int.Parse(time_rec.Text[4].ToString() + time_rec.Text[5].ToString()) >= 60 || int.Parse(time_rec.Text[0].ToString() + time_rec.Text[1].ToString()) >= 24)
+            {
+                return;
+            }
+
+            if (whatClicked == 0)
+            {
+                return;
+            }
+
         }
 
         private void LangCB_SelectedIndexChanged(object sender, EventArgs e)//Смена языка в приложении

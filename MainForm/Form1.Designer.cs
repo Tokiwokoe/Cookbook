@@ -205,10 +205,10 @@ namespace MainForm
             // 
             this.FavPage.Controls.Add(this.fav_recipes_list);
             this.FavPage.Controls.Add(this.favL);
-            this.FavPage.Location = new System.Drawing.Point(4, 22);
+            this.FavPage.Location = new System.Drawing.Point(4, 30);
             this.FavPage.Name = "FavPage";
             this.FavPage.Padding = new System.Windows.Forms.Padding(3);
-            this.FavPage.Size = new System.Drawing.Size(1021, 660);
+            this.FavPage.Size = new System.Drawing.Size(1021, 652);
             this.FavPage.TabIndex = 1;
             this.FavPage.Text = "tabPage2";
             this.FavPage.UseVisualStyleBackColor = true;
@@ -235,9 +235,9 @@ namespace MainForm
             // 
             this.GeneralPage.Controls.Add(this.general_recipes_list);
             this.GeneralPage.Controls.Add(this.genL);
-            this.GeneralPage.Location = new System.Drawing.Point(4, 22);
+            this.GeneralPage.Location = new System.Drawing.Point(4, 30);
             this.GeneralPage.Name = "GeneralPage";
-            this.GeneralPage.Size = new System.Drawing.Size(1021, 660);
+            this.GeneralPage.Size = new System.Drawing.Size(1021, 652);
             this.GeneralPage.TabIndex = 2;
             this.GeneralPage.Text = "tabPage1";
             this.GeneralPage.UseVisualStyleBackColor = true;
@@ -276,9 +276,9 @@ namespace MainForm
             this.addRecPage.Controls.Add(this.CategoryPanel);
             this.addRecPage.Controls.Add(this.PhotoPanel);
             this.addRecPage.Controls.Add(this.AddLabel);
-            this.addRecPage.Location = new System.Drawing.Point(4, 22);
+            this.addRecPage.Location = new System.Drawing.Point(4, 30);
             this.addRecPage.Name = "addRecPage";
-            this.addRecPage.Size = new System.Drawing.Size(1021, 660);
+            this.addRecPage.Size = new System.Drawing.Size(1021, 652);
             this.addRecPage.TabIndex = 3;
             this.addRecPage.Text = "Добавить";
             // 
@@ -721,9 +721,9 @@ namespace MainForm
             this.settingsPage.Controls.Add(this.button1);
             this.settingsPage.Controls.Add(this.LanguagePanel);
             this.settingsPage.Controls.Add(this.SettingsL);
-            this.settingsPage.Location = new System.Drawing.Point(4, 22);
+            this.settingsPage.Location = new System.Drawing.Point(4, 30);
             this.settingsPage.Name = "settingsPage";
-            this.settingsPage.Size = new System.Drawing.Size(1021, 660);
+            this.settingsPage.Size = new System.Drawing.Size(1021, 652);
             this.settingsPage.TabIndex = 4;
             this.settingsPage.Text = "Настройки";
             this.settingsPage.UseVisualStyleBackColor = true;
@@ -792,9 +792,9 @@ namespace MainForm
             // 
             this.helpPage.Controls.Add(this.help_label);
             this.helpPage.Controls.Add(this.helpL);
-            this.helpPage.Location = new System.Drawing.Point(4, 22);
+            this.helpPage.Location = new System.Drawing.Point(4, 30);
             this.helpPage.Name = "helpPage";
-            this.helpPage.Size = new System.Drawing.Size(1021, 660);
+            this.helpPage.Size = new System.Drawing.Size(1021, 652);
             this.helpPage.TabIndex = 5;
             this.helpPage.Text = "tabPage1";
             this.helpPage.UseVisualStyleBackColor = true;
@@ -821,9 +821,9 @@ namespace MainForm
             // 
             this.startPage.Controls.Add(this.startLabel);
             this.startPage.Controls.Add(this.startBox);
-            this.startPage.Location = new System.Drawing.Point(4, 22);
+            this.startPage.Location = new System.Drawing.Point(4, 30);
             this.startPage.Name = "startPage";
-            this.startPage.Size = new System.Drawing.Size(1021, 660);
+            this.startPage.Size = new System.Drawing.Size(1021, 652);
             this.startPage.TabIndex = 6;
             this.startPage.Text = "tabPage1";
             this.startPage.UseVisualStyleBackColor = true;
@@ -852,10 +852,10 @@ namespace MainForm
             // 
             this.SearchResultPage.Controls.Add(this.search_list);
             this.SearchResultPage.Controls.Add(this.searchL);
-            this.SearchResultPage.Location = new System.Drawing.Point(4, 22);
+            this.SearchResultPage.Location = new System.Drawing.Point(4, 30);
             this.SearchResultPage.Name = "SearchResultPage";
             this.SearchResultPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SearchResultPage.Size = new System.Drawing.Size(1021, 660);
+            this.SearchResultPage.Size = new System.Drawing.Size(1021, 652);
             this.SearchResultPage.TabIndex = 7;
             this.SearchResultPage.Text = "tabPage1";
             this.SearchResultPage.UseVisualStyleBackColor = true;
