@@ -14,7 +14,6 @@ namespace bd
 {
     internal static class ControllerForBD
     {
-
         private static string configConnection;
 
         public static List<Recipe> myRecipes;
