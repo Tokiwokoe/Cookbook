@@ -484,7 +484,37 @@ namespace MainForm
 
         private void updateRecB_Click(object sender, EventArgs e)//Редактировать рецепт
         {
-            
+            if (whatClicked == 0)
+            {
+                whatClicked = int.Parse(main_recipe.Marklike);
+            }
+
+            checkRecForm();
+
+            ControllerForBD.editRecipe(main_recipe.Id,rec_name.Text, CategoryCB.Text, Ingr_rec.Text, Instr_rec.Text, whatClicked.ToString(), markDif.Text, time_rec.Text, isPhoto ? Instruments.convertImageIntoB(this.RecPhoto.Image) : null);
+
+            MessageBox.Show("Рецепт успешно отредактирован.","Оповещение");
+
+            if (isMy)
+            {
+                tabContr.SelectedIndex = (int)Buttons.My_Rec;
+
+                ControllerForBD.StartSelectAllMyRecipes();
+
+                thread = new Thread(showAllMyRecipes);
+
+                thread.Start();
+            }
+            if (!isMy)
+            {
+                tabContr.SelectedIndex = (int)Buttons.Fav_Rec;
+
+                ControllerForBD.StartSelectAllStarRecipes();
+
+                thread = new Thread(showAllFavRecipes);
+
+                thread.Start();
+            }
         }
 
         private void searchB_Click(object sender, EventArgs e)
