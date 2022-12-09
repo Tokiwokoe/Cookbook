@@ -167,51 +167,54 @@ namespace MainForm
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            pictureBox1.Image = Image.FromFile(ImageFileNameFull);
-            pictureBox2.Image = Image.FromFile(ImageFileNameFull);
-            pictureBox3.Image = Image.FromFile(ImageFileNameOpacity);
-            pictureBox4.Image = Image.FromFile(ImageFileNameOpacity);
-            pictureBox5.Image = Image.FromFile(ImageFileNameOpacity);
+            if (whatClicked == (int)Star_Marks.NoMark)
+            {
+                pictureBox1.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox2.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox3.Image = Image.FromFile(ImageFileNameOpacity);
+                pictureBox4.Image = Image.FromFile(ImageFileNameOpacity);
+                pictureBox5.Image = Image.FromFile(ImageFileNameOpacity);
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)//Star2
         {
-            
+
         }
 
         private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)//Star3
         {
-            
+
         }
 
         private void pictureBox3_MouseMove(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)//Star4
         {
-            
+
         }
 
         private void pictureBox4_MouseMove(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)//Star5
         {
-            
+
         }
 
         private void pictureBox5_MouseMove(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void RecReadyB_Click(object sender, EventArgs e)//Добавление рецепта в таблицу "Мои рецепты"
