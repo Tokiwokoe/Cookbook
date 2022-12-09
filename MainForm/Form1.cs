@@ -479,7 +479,13 @@ namespace MainForm
 
         private void deleteRecB_Click(object sender, EventArgs e)
         {
-
+            if (main_recipe != null)
+            {
+                ControllerForBD.deleteById(main_recipe.Id);//ДЛЯ РЕЦЕПТОВ ИЗ ИНТЕРНЕТА ТАКОЕ НЕ ДЕЛАЕМ
+                tabContr.SelectedIndex = (int)Buttons.Start_Page;
+                whatButtonClicked = -1;
+                checkButtonsColors(-1);
+            }
         }
 
         private void updateRecB_Click(object sender, EventArgs e)//Редактировать рецепт
