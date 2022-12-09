@@ -245,12 +245,24 @@ namespace MainForm
 
         private void pictureBox5_Click(object sender, EventArgs e)//Star5
         {
-
+            whatClicked = (int)Star_Marks.Mark5;
+            pictureBox1.Image = Image.FromFile(ImageFileNameFull);
+            pictureBox2.Image = Image.FromFile(ImageFileNameFull);
+            pictureBox3.Image = Image.FromFile(ImageFileNameFull);
+            pictureBox4.Image = Image.FromFile(ImageFileNameFull);
+            pictureBox5.Image = Image.FromFile(ImageFileNameFull);
         }
 
         private void pictureBox5_MouseMove(object sender, MouseEventArgs e)
         {
-
+            if (whatClicked == (int)Star_Marks.NoMark)
+            {
+                pictureBox1.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox2.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox3.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox4.Image = Image.FromFile(ImageFileNameFull);
+                pictureBox5.Image = Image.FromFile(ImageFileNameFull);
+            }
         }
 
         private void RecReadyB_Click(object sender, EventArgs e)//Добавление рецепта в таблицу "Мои рецепты"
