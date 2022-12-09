@@ -842,10 +842,37 @@ namespace bd
             connection.Close();
         }
 
-
         public static void editRecipe(long id, string name, string category, string ingredients, string guide, string marklike, string markdif, string time, byte[] image)
         {
+            NpgsqlConnection connection = new NpgsqlConnection(configConnection);
+            connection.Open();
+            string textCommand = "Update recipes ";
 
+            textCommand += $" SET name = '{name}', category = '{category}' , ingredients = '{ingredients}', guide = '{guide}', time ='{time}', marklike= {marklike}, markdif = {markdif} where id = {id}";
+
+
+
+
+            NpgsqlCommand npgsqlCommand = new NpgsqlCommand(textCommand, connection);
+            npgsqlCommand.ExecuteNonQuery();
+            /*
+            npgsqlCommand = new NpgsqlCommand("Insert into images(id, pic) values (" + id + ", @Image )", connection);
+            NpgsqlParameter parameter = npgsqlCommand.CreateParameter();
+            parameter.ParameterName = "@Image";
+            parameter.NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Bytea;
+            parameter.Value = image;
+
+            npgsqlCommand.Parameters.Add(parameter);
+            try
+            {
+                npgsqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+           */
+            connection.Close();
         }
     }
 
