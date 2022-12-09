@@ -295,7 +295,14 @@ namespace MainForm
 
         private void allStarsOpacityNull()//Сделать все звёзды прозрачными
         {
-            
+            if (whatClicked == (int)Star_Marks.NoMark)
+            {
+                pictureBox1.Image = Image.FromFile(ImageFileNameOpacity);
+                pictureBox2.Image = Image.FromFile(ImageFileNameOpacity);
+                pictureBox3.Image = Image.FromFile(ImageFileNameOpacity);
+                pictureBox4.Image = Image.FromFile(ImageFileNameOpacity);
+                pictureBox5.Image = Image.FromFile(ImageFileNameOpacity);
+            }
         }
 
         private void RecPhoto_Click(object sender, EventArgs e)//Добавление фото в рецепт
