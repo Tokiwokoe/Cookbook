@@ -426,18 +426,21 @@ namespace MainForm
         {
             if (rec_name.Text == String.Empty)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы не ввели название рецепта." : "You have not entered a name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
 
             if (Instr_rec.Text == String.Empty)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы не ввели инструкцию к рецепту." : "You have not entered an instruction.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
 
             if (Ingr_rec.Text == String.Empty)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы не ввели ингредиенты для рецепта." : "You have not entered ingredients.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
@@ -446,19 +449,24 @@ namespace MainForm
 
             if (String.IsNullOrEmpty(time_rec.Text) || String.IsNullOrWhiteSpace(time_rec.Text) || time_rec.Text.Length != 6)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы не ввели время или ввели некорректно." : "You have not entered time or entered incorrectly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
 
             if (int.Parse(time_rec.Text[2].ToString() + time_rec.Text[3].ToString()) >= 60 || int.Parse(time_rec.Text[4].ToString() + time_rec.Text[5].ToString()) >= 60 || int.Parse(time_rec.Text[0].ToString() + time_rec.Text[1].ToString()) >= 24)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы ввели время некорректно." : "You have  entered time incorrectly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
 
             if (whatClicked == 0)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Оценка рецепта не задана." : "Recipe's rating is not defined.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
-
         }
 
         private void LangCB_SelectedIndexChanged(object sender, EventArgs e)//Смена языка в приложении
