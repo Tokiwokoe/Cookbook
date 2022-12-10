@@ -254,9 +254,39 @@ namespace MainForm
 
         private void helpB_Click(object sender, EventArgs e)//Раздел "Помощь"
         {
-            
+            checkButtonsColors((int)Buttons.Help);
+
+            help_label.Font = new Font(rec_name.Font.FontFamily, rec_name.Font.Size, rec_name.Font.Style);
+
+            help_label.SetBounds(10, helpL.Height, helpL.Width, 500);
+
+            help_label.Text = readHelpFile();
+
+            tabContr.SelectedIndex = (int)Buttons.Help;
+
+            whatButtonClicked = (int)Buttons.Help;
         }
-         
+
+        public string readHelpFile()
+        {
+            string text;
+
+            if (LanguagesForAddingRecipe.isRu)
+            {
+                using (StreamReader reader = new StreamReader(Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().Length - 27) + "help_ru.txt"))
+                {
+                    text = reader.ReadToEnd();
+                }
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().Length - 27) + "help_en.txt"))
+                {
+                    text = reader.ReadToEnd();
+                }
+            }
+            return text;
+        }
         //Обработка событий с оценкой рецепта
 
         private void pictureBox_MouseLeave(object sender, EventArgs e)
