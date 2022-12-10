@@ -30,11 +30,11 @@ namespace MainForm
         public int buttonPanelWidth;
 
         //public Color myPurpleColor = Color.FromArgb(126, 124, 232);
-        public Color myMainColor = Color.FromArgb(255, 204, 153);
+        public static Color myMainColor = Color.FromArgb(255, 204, 153);
 
         public static Color myButtonHighlightColor = Color.Gainsboro;//AliceBlue
 
-        public Color buttonPanelColor = Color.FromArgb(242, 242, 242);
+        public static Color buttonPanelColor = Color.FromArgb(242, 242, 242);
 
         public int piecesOfScreenForLabel = 16;
 

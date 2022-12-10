@@ -670,7 +670,47 @@ namespace MainForm
 
         public void setColors()
         {
-           
+            LanguagePanel.BackColor = Instruments.myMainColor;
+
+            CancelB.BackColor = Instruments.myMainColor;
+
+            RecReadyB.BackColor = Instruments.myMainColor;
+
+            button1.BackColor = Instruments.myMainColor;
+
+            searchB.BackColor = Color.White;
+
+            FilterB.BackColor = Color.White;
+
+            deleteRecB.BackColor = Instruments.myMainColor;
+
+            updateRecB.BackColor = Instruments.myMainColor;
+
+            InstrPanel.BackColor = Instruments.myMainColor;
+
+            IngrPanel.BackColor = Instruments.myMainColor;
+
+            DifficultyPanel.BackColor = Instruments.myMainColor;
+
+            TimePanel.BackColor = Instruments.myMainColor;
+
+            CategoryPanel.BackColor = Instruments.myMainColor;
+
+            RatingPanel.BackColor = Instruments.myMainColor;
+
+            PhotoPanel.BackColor = Instruments.myMainColor;
+
+            TitlePanel.BackColor = Instruments.myMainColor;
+
+            closeB.BackColor = Instruments.myMainColor;
+
+            myRecB.FlatAppearance.MouseOverBackColor = favB.FlatAppearance.MouseOverBackColor = generalB.FlatAppearance.MouseOverBackColor = Color.FromArgb(248, 248, 248);
+
+            addRecB.FlatAppearance.MouseOverBackColor = settingsB.FlatAppearance.MouseOverBackColor = helpB.FlatAppearance.MouseOverBackColor = Color.FromArgb(248, 248, 248);
+
+            buttonPanel.BackColor = Instruments.buttonPanelColor;
+
+            lab.BackColor = Instruments.myMainColor;
         }
 
         public void CategoryAndFilterInit()//Инициализация категорий и панели фильтра в соответствии с языком
