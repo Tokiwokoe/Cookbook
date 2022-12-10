@@ -117,7 +117,20 @@ namespace MainForm
 
         private void myRecB_Click(object sender, EventArgs e)//Раздел "Мои рецепты"
         {
+            checkButtonsColors((int)Buttons.My_Rec);
 
+            if (whatButtonClicked != (int)Buttons.My_Rec)
+            {
+                ControllerForBD.StartSelectAllMyRecipes();
+
+                thread = new Thread(showAllMyRecipes);
+
+                thread.Start();
+            }
+
+            whatButtonClicked = (int)Buttons.My_Rec;
+
+            tabContr.SelectedIndex = (int)Buttons.My_Rec;
         }
 
         public static void loadAllRecipesIntoFile()
