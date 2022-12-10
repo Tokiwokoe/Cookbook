@@ -135,7 +135,49 @@ namespace MainForm
 
         public static void loadAllRecipesIntoFile()
         {
-           
+            StringBuilder r = new StringBuilder();
+
+            bool isAll = false;
+
+            while (!isAll)
+            {
+                if (ControllerForBD.isStartFile)
+                {
+                    if (ControllerForBD.fileRecipes.Count != 0)
+                    {
+                        Recipe rec = ControllerForBD.fileRecipes.ElementAt(0);
+
+                        r.Append("Название рецепта:" + rec.Name + Environment.NewLine + "Категория:" + rec.Category + Environment.NewLine);
+
+                        r.Append("Оценка сложности:" + rec.Markdif + Environment.NewLine + "Оценка рецепта" + rec.Marklike + Environment.NewLine);
+
+                        r.Append("Время приготовления" + rec.Time + Environment.NewLine + "Ингредиенты:" + rec.Ingredients + Environment.NewLine);
+
+                        r.Append("Инструкция:" + rec.Guide + Environment.NewLine + Environment.NewLine);
+
+                        ControllerForBD.fileRecipes.Remove(rec);
+
+                    }
+                    if ((ControllerForBD.fileRecipes.Count == 0) && (ControllerForBD.isDoneFile))
+                    {
+                        isAll = true;
+                    }
+                }
+                else
+                {
+                    if ((ControllerForBD.isDoneFile))
+                    {
+                        isAll = true;
+                    }
+                }
+            }
+            StreamWriter writer = new StreamWriter("all_my_recipes.txt");
+
+            writer.WriteLine(r.ToString());
+
+            writer.Close();
+
+            MessageBox.Show("Запись в файл all_my_recipes.txt успешно окончена.");
         }
 
         public void showAllMyRecipes()//Вывести все "Мои рецепты"
