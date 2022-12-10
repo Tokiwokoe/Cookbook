@@ -125,6 +125,71 @@ namespace MainForm
            
         }
 
+        public void showAllMyRecipes()//Вывести все "Мои рецепты"
+        {
+            Action action = () => my_recipes_list.Controls.Clear();
+
+            if (InvokeRequired) { Invoke(action); }
+
+            else { my_recipes_list.Controls.Clear(); }
+
+            i = counter = 0;
+
+            bool isAll = false;
+
+            isRecipe = false;
+
+            my_recipes_list.Invoke((MethodInvoker)delegate {
+
+                my_recipes_list.Enabled = false;
+            });
+
+            while (!isAll)
+            {
+                if (ControllerForBD.isStartMy)
+                {
+                    if (ControllerForBD.myRecipes.Count != 0)
+                    {
+                        isRecipe = true;
+
+                        Recipe r = ControllerForBD.myRecipes.ElementAt(0);
+
+                        var t = createTableForRecipes(r);
+
+                        my_recipes_list.BeginInvoke((MethodInvoker)(() => my_recipes_list.Controls.Add(t)));
+
+                        ControllerForBD.myRecipes.Remove(r);
+
+                    }
+                    if ((ControllerForBD.myRecipes.Count == 0) && (ControllerForBD.isDoneMy))
+                    {
+                        isAll = true;
+
+
+                        if (!isRecipe)
+                        {
+                            my_recipes_list.BeginInvoke((MethodInvoker)(() => my_recipes_list.Controls.Add(pbForNoRec())));
+
+                            my_recipes_list.BeginInvoke((MethodInvoker)(() => my_recipes_list.Controls.Add(labelForNoRec())));
+                        }
+                    }
+                }
+                else
+                {
+                    if ((ControllerForBD.isDoneMy))
+                    {
+                        isAll = true;
+                    }
+                }
+            }
+
+            my_recipes_list.Invoke((MethodInvoker)delegate {
+
+                my_recipes_list.Enabled = true;
+            });
+
+        }
+
         private void favB_Click(object sender, EventArgs e)//Раздел "Избранное"
         {
             checkButtonsColors((int)Buttons.Fav_Rec);
@@ -672,7 +737,59 @@ namespace MainForm
         
         public void checkButtonsColors(int num)//Функция для проверки активности кнопок
         {
-            
+            if (num == (int)Buttons.My_Rec)
+            {
+                if (myRecB.BackColor != Instruments.myButtonHighlightColor) { myRecB.BackColor = Instruments.myButtonHighlightColor; }
+            }
+            else
+            {
+                myRecB.BackColor = Color.Transparent;
+            }
+
+            if (num == (int)Buttons.Fav_Rec)
+            {
+                if (favB.BackColor != Instruments.myButtonHighlightColor) { favB.BackColor = Instruments.myButtonHighlightColor; }
+            }
+            else
+            {
+                favB.BackColor = Color.Transparent;
+            }
+
+            if (num == (int)Buttons.General_Rec)
+            {
+                if (generalB.BackColor != Instruments.myButtonHighlightColor) { generalB.BackColor = Instruments.myButtonHighlightColor; }
+            }
+            else
+            {
+                generalB.BackColor = Color.Transparent;
+            }
+
+            if (num == (int)Buttons.Add_Rec)
+            {
+                if (addRecB.BackColor != Instruments.myButtonHighlightColor) { addRecB.BackColor = Instruments.myButtonHighlightColor; }
+            }
+            else
+            {
+                addRecB.BackColor = Color.Transparent;
+            }
+
+            if (num == (int)Buttons.Settings)
+            {
+                if (settingsB.BackColor != Instruments.myButtonHighlightColor) { settingsB.BackColor = Instruments.myButtonHighlightColor; }
+            }
+            else
+            {
+                settingsB.BackColor = Color.Transparent;
+            }
+
+            if (num == (int)(int)Buttons.Help)
+            {
+                if (helpB.BackColor != Instruments.myButtonHighlightColor) { helpB.BackColor = Instruments.myButtonHighlightColor; }
+            }
+            else
+            {
+                helpB.BackColor = Color.Transparent;
+            }
         }
 
         Label labelForNoRec()
