@@ -27,7 +27,7 @@ namespace MainForm
         public int intervalHeight;
         //Получение информации о разрешении экрана пользователя
 
-        public int buttonPanelWidth;
+        public static int buttonPanelWidth;
 
         //public Color myPurpleColor = Color.FromArgb(126, 124, 232);
         public static Color myMainColor = Color.FromArgb(255, 204, 153);

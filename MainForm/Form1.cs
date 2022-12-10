@@ -659,13 +659,252 @@ namespace MainForm
 
         private void MainForm_SizeChanged(object sender, EventArgs e)//Изменение размеров элементов при изменении размеров формы
         {
+            if (Size.Width <= 1560 || Size.Height <= 746)
+            {
+                myRecB.Font = favB.Font = generalB.Font = settingsB.Font = helpB.Font = addRecB.Font = new Font(myRecB.Font.FontFamily, 14.5f, myRecB.Font.Style);
 
+                startLabel.Font = new Font(startLabel.Font.FontFamily, 40f, startLabel.Font.Style);
+            }
+            else
+            {
+                myRecB.Font = favB.Font = generalB.Font = settingsB.Font = helpB.Font = addRecB.Font = new Font(myRecB.Font.FontFamily, 16.5f, myRecB.Font.Style);
+
+                startLabel.Font = new Font(startLabel.Font.FontFamily, 46f, startLabel.Font.Style);
+            }
+
+            formChanges(Size.Width, Size.Height);
         }
 
 
         public void formChanges(int x, int y)//Изменения размеров элементов формы
         {
-            
+            Instruments i  = new Instruments(x, y);
+
+            Width = x;
+
+            Height = y;
+
+            //ButtonPanel changes
+            {
+                buttonPanel.Size = new Size(Instruments.buttonPanelWidth, i.formHeight);
+
+                Instruments.SetRoundedShape(myRecB, i.radius);
+
+                Instruments.SetRoundedShape(favB, i.radius);
+
+                Instruments.SetRoundedShape(generalB, i.radius);
+
+                Instruments.SetRoundedShape(addRecB, i.radius);
+
+                Instruments.SetRoundedShape(settingsB, i.radius);
+
+                Instruments.SetRoundedShape(helpB, i.radius);
+
+                Instruments.SetRoundedShape(startBox, i.radius);
+            }
+
+            //Начальная инициализация
+            {
+                lab.Size = new Size(i.formWidth, i.heightOfLabels + 5);
+
+                tabContr.SetBounds(buttonPanel.Size.Width - 1, i.heightOfLabels + 5 - i.tabControlOffset, i.formWidth - Instruments.buttonPanelWidth + 3, i.formHeight - lab.Height + i.tabControlOffset);
+
+                closeB.SetBounds(i.formWidth - i.heightOfLabels - 20, 0, i.heightOfLabels + 5, i.heightOfLabels + 5);
+            }
+
+            //StartPage changes
+            {
+                //"Фото"
+                {
+                    startBox.SetBounds(i.intervalX + i.intervalX / 6, i.intervalHeight / 4, (int)((i.formWidth - Instruments.buttonPanelWidth) / 1.5), 7 * i.intervalHeight);
+                }
+                //"Надпись"
+                {
+                    startLabel.SetBounds(startBox.Bounds.X, startBox.Bounds.Y + startBox.Height, startBox.Width, i.intervalHeight);
+                }
+            }
+
+            //AddRecPage changes 
+            {
+                //"Заголовок"
+                {
+                    AddLabel.SetBounds(addRecPage.Bounds.X, addRecPage.Bounds.Y - i.tabControlOffset, i.formWidth - Instruments.buttonPanelWidth, i.intervalHeight);
+
+                    searchL.SetBounds(addRecPage.Bounds.X, addRecPage.Bounds.Y - i.tabControlOffset, i.formWidth - Instruments.buttonPanelWidth, i.intervalHeight);
+                }
+
+                //"Название"
+                {
+                    Instruments.SetRoundedShape(TitlePanel, i.radius);
+
+                    TitlePanel.SetBounds(addRecPage.Bounds.X + i.intervalX / 4, AddLabel.Height + i.intervalHeight / 4, (int)(3.25 * i.intervalX), i.intervalHeight);
+                }
+
+                //"Фото"
+                {
+                    Instruments.SetRoundedShape(PhotoPanel, i.radius);
+
+                    PhotoPanel.SetBounds(TitlePanel.Bounds.X, TitlePanel.Bounds.Y + TitlePanel.Height + i.intervalHeight / 2, 2 * i.intervalX, 5 * i.intervalHeight);
+                }
+
+                //"Оценка рецепта"
+                {
+                    Instruments.SetRoundedShape(RatingPanel, i.radius);
+
+                    RatingPanel.SetBounds(PhotoPanel.Bounds.X + PhotoPanel.Width + i.intervalX / 8, TitlePanel.Bounds.Y + TitlePanel.Height + i.intervalHeight / 2, i.intervalX + i.intervalX / 8, i.intervalHeight);
+                }
+
+                //"Категория"
+                {
+                    Instruments.SetRoundedShape(CategoryPanel, i.radius);
+
+                    CategoryPanel.SetBounds(RatingPanel.Bounds.X, RatingPanel.Bounds.Y + RatingPanel.Height + i.intervalHeight / 3, i.intervalX + i.intervalX / 8, i.intervalHeight);
+                }
+
+                //"Время приготовления"
+                {
+                    Instruments.SetRoundedShape(TimePanel, i.radius);
+
+                    TimePanel.SetBounds(RatingPanel.Bounds.X, CategoryPanel.Bounds.Y + CategoryPanel.Height + i.intervalHeight / 3, i.intervalX + i.intervalX / 8, i.intervalHeight);
+                }
+
+                //"Сложность"
+                {
+                    Instruments.SetRoundedShape(DifficultyPanel, i.radius);
+
+                    DifficultyPanel.SetBounds(RatingPanel.Bounds.X, TimePanel.Bounds.Y + TimePanel.Height + i.intervalHeight / 3, i.intervalX + i.intervalX / 8, i.intervalHeight);
+                }
+
+                //"Ингредиенты"
+                {
+                    Instruments.SetRoundedShape(IngrPanel, i.radius);
+
+                    IngrPanel.SetBounds(TitlePanel.Bounds.X + TitlePanel.Width + i.intervalX / 4, AddLabel.Height + i.intervalHeight / 4, (int)(3.07 * i.intervalX), 3 * i.intervalHeight);
+                }
+
+                //"Инструкция"
+                {
+                    Instruments.SetRoundedShape(InstrPanel, i.radius);
+
+                    InstrPanel.SetBounds(IngrPanel.Bounds.X, IngrPanel.Bounds.Y + IngrPanel.Height + i.intervalHeight / 2, (int)(3.07 * i.intervalX), 3 * i.intervalHeight);
+                }
+
+                //Кнопка "добавить"
+                {
+                    RecReadyB.SetBounds((int)(2 * i.intervalX), InstrPanel.Bounds.Y + InstrPanel.Height + i.intervalHeight / 2, i.intervalX, (int)(0.75 * i.intervalHeight));
+
+                    button1.SetBounds(100, InstrPanel.Height + i.intervalHeight / 2, 3 * i.intervalX, (int)(0.75 * i.intervalHeight));
+                }
+
+
+                //Кнопка "удалить"
+                {
+                    deleteRecB.SetBounds((int)(3.5 * i.intervalX), RecReadyB.Bounds.Y, i.intervalX, (int)(0.75 * i.intervalHeight));
+                }
+
+                //Кнопка "редактировать"
+                {
+                    updateRecB.SetBounds((int)(2 * i.intervalX), InstrPanel.Bounds.Y + InstrPanel.Height + i.intervalHeight / 2, i.intervalX, (int)(0.75 * i.intervalHeight));
+                }
+
+                //Кнопка "очистить"
+                {
+                    CancelB.SetBounds((int)(3.5 * i.intervalX), RecReadyB.Bounds.Y, i.intervalX, (int)(0.75 * i.intervalHeight));
+                }
+            }
+
+            //SettingsPage changes
+            {
+                //"Заголовок"
+                {
+                    SettingsL.SetBounds(settingsPage.Bounds.X, settingsPage.Bounds.Y - i.tabControlOffset, i.formWidth - Instruments.buttonPanelWidth, i.intervalHeight);
+                }
+
+                //"Смена языка"
+                {
+                    Instruments.SetRoundedShape(LanguagePanel, i.radius);
+
+                    LanguagePanel.SetBounds(settingsPage.Bounds.X + i.intervalX / 2, SettingsL.Bounds.X + SettingsL.Height + i.intervalY, 3 * i.intervalX, i.intervalHeight);
+                }
+
+            }
+
+            //HelpPage changes
+            {
+                //"Заголовок"
+                {
+                    helpL.SetBounds(helpPage.Bounds.X, helpPage.Bounds.Y - i.tabControlOffset, i.formWidth - Instruments.buttonPanelWidth, i.intervalHeight);
+                }
+            }
+
+            //FavPage changes
+            {
+                //"Заголовок"
+                {
+                    favL.SetBounds(FavPage.Bounds.X, FavPage.Bounds.Y - i.tabControlOffset, i.formWidth - Instruments.buttonPanelWidth, i.intervalHeight);
+                }
+                //Панель для избранных рецептов
+                {
+                    fav_recipes_list.SetBounds(MyRecPage.Bounds.X + i.intervalX / 6, myL.Bounds.Y + myL.Height, i.formWidth - Instruments.buttonPanelWidth, i.heightOfTabControlWithoutLabels - (int)(1.5 * i.intervalHeight));
+                }
+            }
+
+            //MyRecPage changes
+            {
+                //"Заголовок"
+                {
+                    myL.SetBounds(MyRecPage.Bounds.X, MyRecPage.Bounds.Y - i.tabControlOffset, i.formWidth - Instruments.buttonPanelWidth, i.intervalHeight);
+                }
+                //Панель для моих рецептов
+                {
+                    my_recipes_list.SetBounds(MyRecPage.Bounds.X + i.intervalX / 6, myL.Bounds.Y + myL.Height, i.formWidth - Instruments.buttonPanelWidth, i.heightOfTabControlWithoutLabels - (int)(1.5 * i.intervalHeight));
+                }
+
+            }
+
+            //GeneralPage changes
+            {
+                //"Заголовок"
+                {
+                    genL.SetBounds(MyRecPage.Bounds.X, MyRecPage.Bounds.Y - i.tabControlOffset, i.formWidth - Instruments.buttonPanelWidth, i.intervalHeight);
+                }
+
+                //Панель для общих рецептов
+                {
+                    general_recipes_list.SetBounds(MyRecPage.Bounds.X + i.intervalX / 6, myL.Bounds.Y + myL.Height, i.formWidth - Instruments.buttonPanelWidth, i.heightOfTabControlWithoutLabels - (int)(1.5 * i.intervalHeight));
+                }
+            }
+
+            //SearchPage changes
+            {
+                //ТБ  "Поиск"
+                {
+                    searchTB.SetBounds(buttonPanel.Width + 760 + 140, 15, 400, 40);
+
+                    Instruments.SetRoundedShape(searchTB, 10);
+                }
+                //Кнопка "Поиск"
+                {
+                    //searchB.SetBounds(searchTB.Size.Width + searchTB.Bounds.X + 40, 6, 100, 40);
+                    searchB.SetBounds(searchTB.Size.Width + searchTB.Bounds.X + 40, 15, 100, 40);
+                }
+                //Кнопка "Фильтр"
+                {
+                    //FilterB.SetBounds(searchTB.Size.Width + searchTB.Bounds.X - 10, 6, 40, 40);
+                    FilterB.SetBounds(searchTB.Size.Width + searchTB.Bounds.X - 10, 15, 40, 40);
+
+                    Instruments.SetRoundedShape(FilterB, 10);
+                }
+                //Панель для фильтра
+                {
+                    filterPanel.SetBounds(searchTB.Bounds.X + 70, 46 + 7, filterPanel.MinimumSize.Width, filterPanel.MinimumSize.Height);
+                }
+                //Панель для поиска
+                {
+                    //search_list.SetBounds(MyRecPage.Bounds.X + Instruments.intervalX / 6, myL.Bounds.Y + myL.Height, Instruments.formWidth - Instruments.buttonPanelWidth, Instruments.heightOfTabControlWithoutLabels - (int)(1.5 * Instruments.intervalHeight));
+                    search_list.SetBounds((MyRecPage.Bounds.X + i.intervalX / 6), myL.Bounds.Y + myL.Height, i.formWidth - Instruments.buttonPanelWidth, i.heightOfTabControlWithoutLabels - (int)(1.5 * i.intervalHeight));
+                }
+            }
         }
 
         public void setColors()
