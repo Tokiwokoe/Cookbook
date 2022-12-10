@@ -97,6 +97,17 @@ namespace MainForm
             }
         }
 
+        public static Bitmap GetImageFromByteArray(byte[] byteArray)
+        {
+            Bitmap bm = (Bitmap)converter.ConvertFrom(byteArray);
+
+            if (bm != null && (bm.HorizontalResolution != (int)bm.HorizontalResolution || bm.VerticalResolution != (int)bm.VerticalResolution))
+            {
+                bm.SetResolution((int)(bm.HorizontalResolution + 0.5f), (int)(bm.VerticalResolution + 0.5f));
+            }
+
+            return bm;
+        }
 
         //Конвертация Image в Byte[]
         public static Byte[] convertImageIntoB(Image image) => (byte[])converter.ConvertTo(image, typeof(byte[]));
