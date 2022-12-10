@@ -1331,7 +1331,8 @@ namespace MainForm
 
         private void FilterB_Click(object sender, EventArgs e)//Повторное нажатие?
         {
-
+            filterPanel.Width = filterPanel.MaximumSize.Width;
+            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
