@@ -183,7 +183,6 @@ namespace MainForm
         public void showAllMyRecipes()//Вывести все "Мои рецепты"
         {
             Action action = () => my_recipes_list.Controls.Clear();
-
             if (InvokeRequired) { Invoke(action); }
 
             else { my_recipes_list.Controls.Clear(); }
