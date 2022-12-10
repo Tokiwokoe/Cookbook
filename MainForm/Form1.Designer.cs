@@ -721,9 +721,9 @@ namespace MainForm
             this.settingsPage.Controls.Add(this.button1);
             this.settingsPage.Controls.Add(this.LanguagePanel);
             this.settingsPage.Controls.Add(this.SettingsL);
-            this.settingsPage.Location = new System.Drawing.Point(4, 30);
+            this.settingsPage.Location = new System.Drawing.Point(4, 22);
             this.settingsPage.Name = "settingsPage";
-            this.settingsPage.Size = new System.Drawing.Size(1021, 652);
+            this.settingsPage.Size = new System.Drawing.Size(1021, 660);
             this.settingsPage.TabIndex = 4;
             this.settingsPage.Text = "Настройки";
             this.settingsPage.UseVisualStyleBackColor = true;
@@ -852,10 +852,10 @@ namespace MainForm
             // 
             this.SearchResultPage.Controls.Add(this.search_list);
             this.SearchResultPage.Controls.Add(this.searchL);
-            this.SearchResultPage.Location = new System.Drawing.Point(4, 30);
+            this.SearchResultPage.Location = new System.Drawing.Point(4, 22);
             this.SearchResultPage.Name = "SearchResultPage";
             this.SearchResultPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SearchResultPage.Size = new System.Drawing.Size(1021, 652);
+            this.SearchResultPage.Size = new System.Drawing.Size(1021, 660);
             this.SearchResultPage.TabIndex = 7;
             this.SearchResultPage.Text = "tabPage1";
             this.SearchResultPage.UseVisualStyleBackColor = true;
@@ -1023,6 +1023,7 @@ namespace MainForm
             this.addRecB.FlatAppearance.BorderSize = 0;
             this.addRecB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addRecB.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addRecB.Image = ((System.Drawing.Image)(resources.GetObject("addRecB.Image")));
             this.addRecB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.addRecB.Location = new System.Drawing.Point(5, 246);
             this.addRecB.Margin = new System.Windows.Forms.Padding(5);
@@ -1042,6 +1043,7 @@ namespace MainForm
             this.myRecB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.myRecB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.myRecB.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.myRecB.Image = ((System.Drawing.Image)(resources.GetObject("myRecB.Image")));
             this.myRecB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.myRecB.Location = new System.Drawing.Point(5, 56);
             this.myRecB.Margin = new System.Windows.Forms.Padding(5);
@@ -1060,6 +1062,7 @@ namespace MainForm
             this.favB.FlatAppearance.BorderSize = 0;
             this.favB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.favB.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.favB.Image = ((System.Drawing.Image)(resources.GetObject("favB.Image")));
             this.favB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.favB.Location = new System.Drawing.Point(5, 151);
             this.favB.Margin = new System.Windows.Forms.Padding(5);
@@ -1078,6 +1081,7 @@ namespace MainForm
             this.helpB.FlatAppearance.BorderSize = 0;
             this.helpB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.helpB.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.helpB.Image = ((System.Drawing.Image)(resources.GetObject("helpB.Image")));
             this.helpB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.helpB.Location = new System.Drawing.Point(5, 436);
             this.helpB.Margin = new System.Windows.Forms.Padding(5);
@@ -1096,6 +1100,7 @@ namespace MainForm
             this.settingsB.FlatAppearance.BorderSize = 0;
             this.settingsB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settingsB.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.settingsB.Image = ((System.Drawing.Image)(resources.GetObject("settingsB.Image")));
             this.settingsB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.settingsB.Location = new System.Drawing.Point(5, 341);
             this.settingsB.Margin = new System.Windows.Forms.Padding(5);

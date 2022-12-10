@@ -1282,12 +1282,14 @@ namespace MainForm
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            /*
             myRecB.Image = Image.FromFile(ImageFileNameMyRecB);
             favB.Image = Image.FromFile(ImageFileNameFavB);
             addRecB.Image = Image.FromFile(ImageFileNameAddRecB);
             settingsB.Image = Image.FromFile(ImageFileNameSettingsB);
             helpB.Image = Image.FromFile(ImageFileNameHelpB);
             startBox.BackgroundImage = Image.FromFile(ImageFileNameStartPage);
+            */
         }
     }
     
