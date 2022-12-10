@@ -22,7 +22,7 @@ namespace MainForm
 
         public int intervalX;
 
-        public int intervalY;
+        public static int intervalY;
 
         public int intervalHeight;
         //Получение информации о разрешении экрана пользователя

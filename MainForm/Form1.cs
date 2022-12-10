@@ -90,7 +90,7 @@ namespace MainForm
         {
             InitializeComponent();
 
-            //ControllerForBD.Сonnect("Server = localhost; Port = 5432;UserId = postgres; Password =postgres; Database = test2; "); //Подключение БД
+            ControllerForBD.Сonnect("Server = localhost; Port = 5432;UserId = postgres; Password =postgres; Database = test2; "); //Подключение БД
 
             formChanges(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height - 50);
 
@@ -888,7 +888,7 @@ namespace MainForm
                 {
                     Instruments.SetRoundedShape(LanguagePanel, i.radius);
 
-                    LanguagePanel.SetBounds(settingsPage.Bounds.X + i.intervalX / 2, SettingsL.Bounds.X + SettingsL.Height + i.intervalY, 3 * i.intervalX, i.intervalHeight);
+                    LanguagePanel.SetBounds(settingsPage.Bounds.X + i.intervalX / 2, SettingsL.Bounds.X + SettingsL.Height + Instruments.intervalY, 3 * i.intervalX, i.intervalHeight);
                 }
 
             }
@@ -1168,10 +1168,215 @@ namespace MainForm
 
         public TableLayoutPanel createTableForRecipes(Recipe r)//Создание рецепта для отображения
         {
-            TableLayoutPanel t = new TableLayoutPanel();         
+            int intervalX = my_recipes_list.Width / 20;
+
+            int intervalY = Instruments.intervalY;
+
+            TableLayoutPanel t = new TableLayoutPanel();
+
+            counter++;
+
+            if (counter % 2 == 0)
+            {
+                t.SetBounds(intervalX + (int)(partsForPanel / 2) * intervalX, i, (int)(partsForPanel / 2) * intervalX - 40, InstrPanel.Height);//НЕ ЗАБУДЬ КНОПКУ ИЗБРАННОЕ
+
+                i += t.Height + intervalY;
+            }
+            else
+            {
+                t.SetBounds(0, (i), (int)(partsForPanel / 2) * intervalX - 40, InstrPanel.Height);//НЕ ЗАБУДЬ КНОПКУ ИЗБРАННОЕ
+            }
+
+            t.BackColor = Instruments.buttonPanelColor;
+
+            Instruments.SetRoundedShape(t, 80);
+
+            PictureBox pb = new PictureBox();
+
+            pb.SizeMode = PictureBoxSizeMode.Zoom;
+
+            if (r.Pic != null)
+            {
+                using (MemoryStream productImageStream = new System.IO.MemoryStream(r.Pic))
+                {
+                    ImageConverter imageConverter = new System.Drawing.ImageConverter();
+
+                    pb.BackgroundImage = imageConverter.ConvertFrom(r.Pic) as System.Drawing.Image;
+
+                    pb.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                    pb.BackgroundImageLayout = ImageLayout.Stretch;
+                }
+            }
+            else
+            {
+                pb.BackgroundImage = image;
+
+                pb.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                pb.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+
+            t.Controls.Add(pb, 0, 0);
+
+            t.Controls[0].SetBounds(50, 0, t.Size.Height + 60, t.Size.Height);
+
+            Instruments.SetRoundedShape(t.Controls[0], 80);
+
+            TableLayoutPanel panel = new TableLayoutPanel();
+
+            panel.Dock = DockStyle.Fill;
+
+            panel.ColumnCount = 1;
+
+            panel.RowCount = 3;
+
+            TableLayoutPanel pan = new TableLayoutPanel();
+
+            pan.ColumnCount = 2;
+
+            pan.RowCount = 1;
+
+            Label l = new Label();
+
+            PictureBox fav = new PictureBox();
+
+            Label l1 = new Label();
+
+            TableLayoutPanel stars = new TableLayoutPanel();
+
+            //Событие заполнения рецепта
+            EventHandler handler =
+                delegate
+                {
+                    fullRecipe(r.Id, whatButtonClicked);
+                };
+
+            //Наведение на рецепт
+            EventHandler handler1 =
+                delegate
+                {
+                    l.Font = new Font(l.Font.FontFamily, l.Font.Size + 2.5f, l.Font.Style);
+
+                    l.ForeColor = Instruments.myMainColor;
+                };
+
+            //Отведение с рецепта
+            EventHandler handler2 =
+                delegate
+                {
+                    l.Font = new Font(l.Font.FontFamily, l.Font.Size - 2.5f, l.Font.Style);
+
+                    l.ForeColor = Color.Black;
+                };
+
+            EventHandler handler3 =
+                delegate
+                {
+                    if (r.Star)
+                    {
+                        fav.Image = Image.FromFile(HeartFileNameOpacity);
+                    }
+                    else
+                    {
+                        fav.Image = Image.FromFile(HeartFileNameFull);
+                    }
+
+                    changeFavourite(r);
+                };
+
+            Parallel.Invoke(
+                () =>
+                {
+                    l.Click += handler;
+
+                    l.MouseEnter += handler1;
+
+                    l.MouseLeave += handler2;
+
+                    l.AutoSize = false;
+
+                    l.TextAlign = ContentAlignment.TopLeft;
+
+                    l.Font = new Font(myRecB.Font.FontFamily, 23.5f, myRecB.Font.Style);
+
+                    l.Text = r.Name;
+                },
+                () =>
+                {
+                    fav.Click += handler3;
+
+                    fav.Image = r.Star ? Image.FromFile(HeartFileNameFull) : Image.FromFile(HeartFileNameOpacity);//ПРОВЕРКА НА ИЗБРАННОЕ
+
+                },
+                () =>
+                {
+                    l1.AutoSize = false;
+
+                    l1.TextAlign = ContentAlignment.TopLeft;
+
+                    l1.Font = new Font(myRecB.Font.FontFamily, 15.5f, myRecB.Font.Style);
+
+                },
+                () =>
+                {
+                    stars.ColumnCount = 5;
+
+                    stars.RowCount = 1;
+
+                    int mark = int.Parse(r.Marklike);
+
+                    for (int j = 0; j < 5; j++)
+                    {
+                        PictureBox p = new PictureBox();
+
+                        p.SizeMode = PictureBoxSizeMode.Zoom;
+
+                        if (mark > 0)
+                        {
+                            p.BackgroundImage = Image.FromFile(ImageFileNameFull);
+                        }
+                        else
+                        {
+                            p.BackgroundImage = Image.FromFile(ImageFileNameOpacity);
+                        }
+
+                        p.Size = new Size(32, 32);
+
+                        stars.Controls.Add(p, j, 0);
+
+                        mark--;
+                    }
+                }
+
+                );
+            pan.Controls.Add(l);
+
+            pan.Controls[0].SetBounds(0, 0, t.Size.Width - t.Controls[0].Size.Width - 80, t.Height / 2);
+
+            pan.Controls.Add(fav);
+
+            pan.Controls[1].SetBounds(pan.Controls[0].Width, 0, 32, 32);
+
+            panel.Controls.Add(pan);
+
+            panel.Controls[0].SetBounds(0, 0, t.Size.Width - t.Controls[0].Size.Width - 3, (int)(t.Height / 2.7));
+
+            panel.Controls.Add(l1, 1, 0);
+
+            panel.Controls[1].SetBounds(0, 0, t.Size.Width - t.Controls[0].Size.Width - 3, t.Height / 3);
+
+            panel.Controls[1].Text = DiffL.Text + ": " + r.Markdif + " / 5" + Environment.NewLine + TimeL.Text + ": " + r.Time + Environment.NewLine + CategoryL.Text + ": " + r.Category;
+
+            panel.Controls.Add(stars, 0, 2);
+
+            panel.Controls[2].SetBounds(0, 6, t.Size.Width - t.Controls[0].Size.Width - 3, t.Height / 4);
+
+            t.Controls.Add(panel, 1, 0);
+
             return t;
         }
-        
+
         public void changeFavourite(Recipe r)
         {
             if (r.Star)
@@ -1186,6 +1391,91 @@ namespace MainForm
 
         public void fullRecipe(int id, int whatBu)//Заполнение рецепта при нажатии
         {
+            if (whatBu == (int)Buttons.My_Rec)
+            {
+                main_recipe = ControllerForBD.SelectById(id, "myrecipes");
+            }
+            if (whatBu == (int)Buttons.Fav_Rec)
+            {
+                main_recipe = ControllerForBD.SelectById(id, "starrecipes");
+            }
+            if (whatBu == (int)Buttons.General_Rec)
+            {
+                main_recipe = ControllerForBD.SelectById(id, "inetrecipes");
+            }
+
+            RecReadyB.Hide();
+
+            CancelB.Hide();
+
+            updateRecB.Show();
+
+            deleteRecB.Show();
+            if (tabContr.SelectedIndex == (int)Buttons.Fav_Rec)
+            {
+                isMy = false;
+            }
+            else
+            {
+                isMy = true;
+            }
+            tabContr.SelectedIndex = (int)Buttons.Add_Rec;//НЕ ЗАБУДЬ ДОДЕЛАТЬ ИЗБРАННЫЕ
+
+            AddLabel.Text = "";
+
+            //МБ ИНВОУК СДЕЛАТЬ
+            cleanAddRecForm();
+
+            rec_name.Text = main_recipe.Name;
+
+            CategoryCB.Text = main_recipe.Category;
+
+            time_rec.Text = main_recipe.Time;
+
+            markDif.Text = main_recipe.Markdif;
+
+            if (main_recipe.Ingredients != null)
+            {
+                Ingr_rec.Text = main_recipe.Ingredients;
+            }
+            else
+            {
+                Ingr_rec.Text = "-";
+            }
+
+            if (main_recipe.Guide != null)
+            {
+                Instr_rec.Text = main_recipe.Guide;
+            }
+            else
+            {
+                Instr_rec.Text = "-";
+            }
+
+            if (main_recipe.Pic == null)
+            {
+                RecPhoto.Image = Image.FromFile(StandartPhotoImage);
+            }
+            else
+            {
+                RecPhoto.Image = Instruments.convertBIntoImage(main_recipe.Pic);
+
+            }
+
+            if (int.Parse(main_recipe.Marklike) >= 1) { pictureBox1.Image = Image.FromFile(ImageFileNameFull); }
+            else { pictureBox1.Image = Image.FromFile(ImageFileNameOpacity); }
+
+            if (int.Parse(main_recipe.Marklike) >= 2) { pictureBox2.Image = Image.FromFile(ImageFileNameFull); }
+            else { pictureBox2.Image = Image.FromFile(ImageFileNameOpacity); }
+
+            if (int.Parse(main_recipe.Marklike) >= 3) { pictureBox3.Image = Image.FromFile(ImageFileNameFull); }
+            else { pictureBox3.Image = Image.FromFile(ImageFileNameOpacity); }
+
+            if (int.Parse(main_recipe.Marklike) >= 4) { pictureBox4.Image = Image.FromFile(ImageFileNameFull); }
+            else { pictureBox4.Image = Image.FromFile(ImageFileNameOpacity); }
+
+            if (int.Parse(main_recipe.Marklike) == 5) { pictureBox5.Image = Image.FromFile(ImageFileNameFull); }
+            else { pictureBox5.Image = Image.FromFile(ImageFileNameOpacity); }
         }
 
         private void deleteRecB_Click(object sender, EventArgs e)
