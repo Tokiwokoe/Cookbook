@@ -896,6 +896,38 @@ namespace MainForm
 
         }
 
+        public void showAllSearchRecipe()
+        {
+            Action action = () => search_list.Controls.Clear();
+
+            if (InvokeRequired) { Invoke(action); }
+
+            else { search_list.Controls.Clear(); }
+
+            i = counter = 0;
+
+            if (ControllerForBD.searchRecipes.Count != 0)
+            {
+                while (ControllerForBD.searchRecipes.Count != 0)
+                {
+                    Recipe r = ControllerForBD.searchRecipes.ElementAt(0);
+
+                    var t = createTableForRecipes(r);
+
+                    search_list.BeginInvoke((MethodInvoker)(() => search_list.Controls.Add(t)));
+
+                    ControllerForBD.searchRecipes.Remove(r);
+                }
+            }
+            else
+            {
+                search_list.BeginInvoke((MethodInvoker)(() => search_list.Controls.Add(pbForNoRec())));
+
+                search_list.BeginInvoke((MethodInvoker)(() => search_list.Controls.Add(labelForNoRec())));
+            }
+
+        }
+
         private void FilterB_Click(object sender, EventArgs e)//Повторное нажатие?
         {
 
