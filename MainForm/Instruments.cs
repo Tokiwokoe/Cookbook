@@ -32,7 +32,7 @@ namespace MainForm
         //public Color myPurpleColor = Color.FromArgb(126, 124, 232);
         public Color myMainColor = Color.FromArgb(255, 204, 153);
 
-        public Color myButtonHighlightColor = Color.Gainsboro;//AliceBlue
+        public static Color myButtonHighlightColor = Color.Gainsboro;//AliceBlue
 
         public Color buttonPanelColor = Color.FromArgb(242, 242, 242);
 
