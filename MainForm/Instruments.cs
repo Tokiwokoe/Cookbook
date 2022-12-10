@@ -88,6 +88,15 @@ namespace MainForm
         }
 
 
+        public static byte[] CopyImageToByteArray(Image theImage)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                theImage.Save(memoryStream, ImageFormat.Png);
+                return memoryStream.ToArray();
+            }
+        }
+
 
         //Конвертация Image в Byte[]
         public static Byte[] convertImageIntoB(Image image) => (byte[])converter.ConvertTo(image, typeof(byte[]));
