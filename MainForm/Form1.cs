@@ -1194,7 +1194,65 @@ namespace MainForm
 
         private void searchB_Click(object sender, EventArgs e)
         {
+            if (whatButtonClicked != (int)Buttons.Fav_Rec && whatButtonClicked != (int)Buttons.My_Rec && whatButtonClicked != (int)Buttons.General_Rec)
+            {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Для поиска Вам необходимо зайти в какой-либо раздел" : "To use search you have to choose a page.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            /*if (searchTB.Text == String.Empty)
+            {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Строка поиска пуста" : "Search text box is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }*/
+            tabContr.SelectedIndex = (int)Buttons.SearchResultPage;
 
+            string filter = "";
+
+            List<string> checkedCategory = new List<string>();
+
+            List<string> checkedDiff = new List<string>();
+
+            List<string> checkedMarkLike = new List<string>();
+
+            if (categoryCheckB.CheckedItems.Count != 0)
+            {
+                foreach (var item in categoryCheckB.CheckedItems)
+                {
+                    checkedCategory.Add(item.ToString());
+                }
+            }
+            if (diffCheckB.CheckedItems.Count != 0)
+            {
+                foreach (var item in diffCheckB.CheckedItems)
+                {
+                    checkedDiff.Add(item.ToString());
+                }
+            }
+            if (rateCheckB.CheckedItems.Count != 0)
+            {
+                foreach (var item in rateCheckB.CheckedItems)
+                {
+                    checkedMarkLike.Add(item.ToString()[0].ToString());
+                }
+            }//ДОДЕЛАТЬ, ЕСЛИ ФИЛЬТР ПУСТОЙ, ТО В PairSearch pair = new PairSearch(filter, searchTB.Text); В ФИЛЬТР ПЕРЕДАВАТЬ ""
+            if (whatButtonClicked == (int)Buttons.My_Rec)//2 для всех рецептов
+            {
+                filter = ControllerForBD.createFilter(0, checkedCategory, checkedMarkLike, checkedDiff, false);
+            }
+            if (whatButtonClicked == (int)Buttons.Fav_Rec)
+            {
+                filter = ControllerForBD.createFilter(0, checkedCategory, checkedMarkLike, checkedDiff, true);
+            }
+            if (whatButtonClicked == (int)Buttons.General_Rec)
+            {
+                filter = ControllerForBD.createFilter(1, checkedCategory, checkedMarkLike, checkedDiff, false);
+            }
+
+            PairSearch pair = new PairSearch(filter, searchTB.Text);
+
+            ControllerForBD.alterSearch(pair);
+
+            showAllSearchRecipe();
         }
 
         public void showAllSearchRecipe()
