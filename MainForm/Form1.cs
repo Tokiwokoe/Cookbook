@@ -319,9 +319,39 @@ namespace MainForm
 
         private void helpB_Click(object sender, EventArgs e)//Раздел "Помощь"
         {
-            
+            checkButtonsColors((int)Buttons.Help);
+
+            help_label.Font = new Font(rec_name.Font.FontFamily, rec_name.Font.Size, rec_name.Font.Style);
+
+            help_label.SetBounds(10, helpL.Height, helpL.Width, 500);
+
+            help_label.Text = readHelpFile();
+
+            tabContr.SelectedIndex = (int)Buttons.Help;
+
+            whatButtonClicked = (int)Buttons.Help;
         }
-         
+
+        public string readHelpFile()
+        {
+            string text;
+
+            if (LanguagesForAddingRecipe.isRu)
+            {
+                using (StreamReader reader = new StreamReader(Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().Length - 27) + "help_ru.txt"))
+                {
+                    text = reader.ReadToEnd();
+                }
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().Length - 27) + "help_en.txt"))
+                {
+                    text = reader.ReadToEnd();
+                }
+            }
+            return text;
+        }
         //Обработка событий с оценкой рецепта
 
         private void pictureBox_MouseLeave(object sender, EventArgs e)
@@ -461,18 +491,21 @@ namespace MainForm
         {
             if (rec_name.Text == String.Empty)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы не ввели название рецепта." : "You have not entered a name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
 
             if (Instr_rec.Text == String.Empty)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы не ввели инструкцию к рецепту." : "You have not entered an instruction.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
 
             if (Ingr_rec.Text == String.Empty)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы не ввели ингредиенты для рецепта." : "You have not entered ingredients.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
@@ -481,19 +514,24 @@ namespace MainForm
 
             if (String.IsNullOrEmpty(time_rec.Text) || String.IsNullOrWhiteSpace(time_rec.Text) || time_rec.Text.Length != 6)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы не ввели время или ввели некорректно." : "You have not entered time or entered incorrectly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
 
             if (int.Parse(time_rec.Text[2].ToString() + time_rec.Text[3].ToString()) >= 60 || int.Parse(time_rec.Text[4].ToString() + time_rec.Text[5].ToString()) >= 60 || int.Parse(time_rec.Text[0].ToString() + time_rec.Text[1].ToString()) >= 24)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Вы ввели время некорректно." : "You have  entered time incorrectly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
 
             if (whatClicked == 0)
             {
+                MessageBox.Show(LanguagesForAddingRecipe.isRu ? "Оценка рецепта не задана." : "Recipe's rating is not defined.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
-
         }
 
         private void LangCB_SelectedIndexChanged(object sender, EventArgs e)//Смена языка в приложении
@@ -503,7 +541,65 @@ namespace MainForm
 
         public void languageChanges()//Смена языка в приложении
         {   
-            
+            CategoryAndFilterInit();
+
+            AddLabel.Text = LanguagesForAddingRecipe.isRu ? "Добавить рецепт" : "Add a recipe";
+
+            startLabel.Text = LanguagesForAddingRecipe.isRu ? "Храните все рецепты в одном месте" : "Store all recipes in one place";
+
+            myRecB.Text = LanguagesForAddingRecipe.isRu ? "Мои рецепты" : "My recipes";
+
+            favB.Text = LanguagesForAddingRecipe.isRu ? "Избранные" : "Favourite";
+
+            generalB.Text = LanguagesForAddingRecipe.isRu ? "Общие рецепты" : "General recipes";
+
+            addRecB.Text = LanguagesForAddingRecipe.isRu ? "Добавить рецепт" : "Add a recipe";
+
+            settingsB.Text = LanguagesForAddingRecipe.isRu ? "Настройки" : "Settings";
+
+            helpB.Text = LanguagesForAddingRecipe.isRu ? "Помощь" : "Help";
+
+            TitleL.Text = LanguagesForAddingRecipe.isRu ? "Название" : "Title";
+
+            RateLable.Text = difl1.Text = LanguagesForAddingRecipe.isRu ? "Оценка рецепта" : "Prescription evaluation";
+
+            PhotoLab.Text = LanguagesForAddingRecipe.isRu ? "Фото блюда" : "Dish photo";
+
+            CategoryL.Text = catl.Text = LanguagesForAddingRecipe.isRu ? "Категория" : "Category";
+
+            IngredL.Text = LanguagesForAddingRecipe.isRu ? "Ингредиенты" : "Ingredients";
+
+            TimeL.Text = LanguagesForAddingRecipe.isRu ? "Время приготовления(ч:м:с)" : "Cooking time(h:m:s)";
+
+            genL.Text = LanguagesForAddingRecipe.isRu ? "Общие рецепты" : "General recipes";
+
+            myL.Text = LanguagesForAddingRecipe.isRu ? "Мои рецепты" : "My recipes";
+
+            favL.Text = LanguagesForAddingRecipe.isRu ? "Избранные" : "Favourite";
+
+            helpL.Text = LanguagesForAddingRecipe.isRu ? "Помощь" : "Help";
+
+            ChangeLLabel.Text = LanguagesForAddingRecipe.isRu ? "Язык" : "Language";
+
+            SettingsL.Text = LanguagesForAddingRecipe.isRu ? "Настройки" : "Settings";
+
+            CancelB.Text = LanguagesForAddingRecipe.isRu ? "Очистить" : "Clean";
+
+            RecReadyB.Text = LanguagesForAddingRecipe.isRu ? "Добавить" : "Add";
+
+            button1.Text = LanguagesForAddingRecipe.isRu ? "Выгрузить \"Мои рецепты\" в файл" : "Load \"My recipes\" into file";
+
+            searchB.Text = LanguagesForAddingRecipe.isRu ? "Поиск" : "Search";
+
+            deleteRecB.Text = LanguagesForAddingRecipe.isRu ? "Удалить" : "Delete";
+
+            updateRecB.Text = LanguagesForAddingRecipe.isRu ? "Редактировать" :"Update";
+
+            InstrL.Text = LanguagesForAddingRecipe.isRu ? "Инструкция" : "Instruction";
+
+            DiffL.Text = difl.Text = LanguagesForAddingRecipe.isRu ? "Оценка сложности рецепта" : "Recipe Difficulty Score";
+
+            searchL.Text = LanguagesForAddingRecipe.isRu ? "Результат поиска" : "Result of search";
         }
 
         private void CancelB_Click(object sender, EventArgs e)//Очистка формы рецепта
@@ -564,7 +660,68 @@ namespace MainForm
         {
            
         }
-        
+
+        public void CategoryAndFilterInit()//Инициализация категорий и панели фильтра в соответствии с языком
+        {
+            if (CategoryCB.Items.Count != 0)
+            {
+                CategoryCB.Items.Clear();
+            }
+
+            if (rateCheckB.Items.Count != 0)
+            {
+                rateCheckB.Items.Clear();
+            }
+
+            if (diffCheckB.Items.Count != 0)
+            {
+                diffCheckB.Items.Clear();
+            }
+
+            if (categoryCheckB.Items.Count != 0)
+            {
+                categoryCheckB.Items.Clear();
+            }
+
+            if (LanguagesForAddingRecipe.isRu)
+            {
+                foreach (var item in LanguagesForAddingRecipe.categoriesRu)
+                {
+                    CategoryCB.Items.Add(item);
+
+                    categoryCheckB.Items.Add(item);
+                }
+            }
+            else
+            {
+                foreach (var item in LanguagesForAddingRecipe.categoriesEn)
+                {
+                    CategoryCB.Items.Add(item);
+
+                    categoryCheckB.Items.Add(item);
+                }
+            }
+            for (int i = 1; i < 6; i++)
+            {
+                diffCheckB.Items.Add(i);
+
+                if (i == 1)
+                {
+                    rateCheckB.Items.Add(i + (LanguagesForAddingRecipe.isRu ? " звезда" : " star"));
+
+                    continue;
+                }
+
+                if (i == 5)
+                {
+                    rateCheckB.Items.Add(i + (LanguagesForAddingRecipe.isRu ? " звезда" : " stars"));
+
+                    continue;
+                }
+
+                rateCheckB.Items.Add(i + (LanguagesForAddingRecipe.isRu ? " звезда" : " stars"));
+            }
+        }
         
         public void checkButtonsColors(int num)//Функция для проверки активности кнопок
         {
