@@ -499,7 +499,68 @@ namespace MainForm
         {
            
         }
-        
+
+        public void CategoryAndFilterInit()//Инициализация категорий и панели фильтра в соответствии с языком
+        {
+            if (CategoryCB.Items.Count != 0)
+            {
+                CategoryCB.Items.Clear();
+            }
+
+            if (rateCheckB.Items.Count != 0)
+            {
+                rateCheckB.Items.Clear();
+            }
+
+            if (diffCheckB.Items.Count != 0)
+            {
+                diffCheckB.Items.Clear();
+            }
+
+            if (categoryCheckB.Items.Count != 0)
+            {
+                categoryCheckB.Items.Clear();
+            }
+
+            if (LanguagesForAddingRecipe.isRu)
+            {
+                foreach (var item in LanguagesForAddingRecipe.categoriesRu)
+                {
+                    CategoryCB.Items.Add(item);
+
+                    categoryCheckB.Items.Add(item);
+                }
+            }
+            else
+            {
+                foreach (var item in LanguagesForAddingRecipe.categoriesEn)
+                {
+                    CategoryCB.Items.Add(item);
+
+                    categoryCheckB.Items.Add(item);
+                }
+            }
+            for (int i = 1; i < 6; i++)
+            {
+                diffCheckB.Items.Add(i);
+
+                if (i == 1)
+                {
+                    rateCheckB.Items.Add(i + (LanguagesForAddingRecipe.isRu ? " звезда" : " star"));
+
+                    continue;
+                }
+
+                if (i == 5)
+                {
+                    rateCheckB.Items.Add(i + (LanguagesForAddingRecipe.isRu ? " звезда" : " stars"));
+
+                    continue;
+                }
+
+                rateCheckB.Items.Add(i + (LanguagesForAddingRecipe.isRu ? " звезда" : " stars"));
+            }
+        }
         
         public void checkButtonsColors(int num)//Функция для проверки активности кнопок
         {
