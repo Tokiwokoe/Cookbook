@@ -476,7 +476,65 @@ namespace MainForm
 
         public void languageChanges()//Смена языка в приложении
         {   
-            
+            CategoryAndFilterInit();
+
+            AddLabel.Text = LanguagesForAddingRecipe.isRu ? "Добавить рецепт" : "Add a recipe";
+
+            startLabel.Text = LanguagesForAddingRecipe.isRu ? "Храните все рецепты в одном месте" : "Store all recipes in one place";
+
+            myRecB.Text = LanguagesForAddingRecipe.isRu ? "Мои рецепты" : "My recipes";
+
+            favB.Text = LanguagesForAddingRecipe.isRu ? "Избранные" : "Favourite";
+
+            generalB.Text = LanguagesForAddingRecipe.isRu ? "Общие рецепты" : "General recipes";
+
+            addRecB.Text = LanguagesForAddingRecipe.isRu ? "Добавить рецепт" : "Add a recipe";
+
+            settingsB.Text = LanguagesForAddingRecipe.isRu ? "Настройки" : "Settings";
+
+            helpB.Text = LanguagesForAddingRecipe.isRu ? "Помощь" : "Help";
+
+            TitleL.Text = LanguagesForAddingRecipe.isRu ? "Название" : "Title";
+
+            RateLable.Text = difl1.Text = LanguagesForAddingRecipe.isRu ? "Оценка рецепта" : "Prescription evaluation";
+
+            PhotoLab.Text = LanguagesForAddingRecipe.isRu ? "Фото блюда" : "Dish photo";
+
+            CategoryL.Text = catl.Text = LanguagesForAddingRecipe.isRu ? "Категория" : "Category";
+
+            IngredL.Text = LanguagesForAddingRecipe.isRu ? "Ингредиенты" : "Ingredients";
+
+            TimeL.Text = LanguagesForAddingRecipe.isRu ? "Время приготовления(ч:м:с)" : "Cooking time(h:m:s)";
+
+            genL.Text = LanguagesForAddingRecipe.isRu ? "Общие рецепты" : "General recipes";
+
+            myL.Text = LanguagesForAddingRecipe.isRu ? "Мои рецепты" : "My recipes";
+
+            favL.Text = LanguagesForAddingRecipe.isRu ? "Избранные" : "Favourite";
+
+            helpL.Text = LanguagesForAddingRecipe.isRu ? "Помощь" : "Help";
+
+            ChangeLLabel.Text = LanguagesForAddingRecipe.isRu ? "Язык" : "Language";
+
+            SettingsL.Text = LanguagesForAddingRecipe.isRu ? "Настройки" : "Settings";
+
+            CancelB.Text = LanguagesForAddingRecipe.isRu ? "Очистить" : "Clean";
+
+            RecReadyB.Text = LanguagesForAddingRecipe.isRu ? "Добавить" : "Add";
+
+            button1.Text = LanguagesForAddingRecipe.isRu ? "Выгрузить \"Мои рецепты\" в файл" : "Load \"My recipes\" into file";
+
+            searchB.Text = LanguagesForAddingRecipe.isRu ? "Поиск" : "Search";
+
+            deleteRecB.Text = LanguagesForAddingRecipe.isRu ? "Удалить" : "Delete";
+
+            updateRecB.Text = LanguagesForAddingRecipe.isRu ? "Редактировать" :"Update";
+
+            InstrL.Text = LanguagesForAddingRecipe.isRu ? "Инструкция" : "Instruction";
+
+            DiffL.Text = difl.Text = LanguagesForAddingRecipe.isRu ? "Оценка сложности рецепта" : "Recipe Difficulty Score";
+
+            searchL.Text = LanguagesForAddingRecipe.isRu ? "Результат поиска" : "Result of search";
         }
 
         private void CancelB_Click(object sender, EventArgs e)//Очистка формы рецепта
