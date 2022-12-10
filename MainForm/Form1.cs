@@ -654,7 +654,16 @@ namespace MainForm
 
         private void RecPhoto_Click(object sender, EventArgs e)//Добавление фото в рецепт
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)//Фото не выбрано
+            {
+                return;
+            }
+
+            RecPhoto.Image = Image.FromFile(openFileDialog.FileName);
+
+            isPhoto = true;
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)//Изменение размеров элементов при изменении размеров формы
