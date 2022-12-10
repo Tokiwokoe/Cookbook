@@ -471,7 +471,19 @@ namespace MainForm
 
         private void LangCB_SelectedIndexChanged(object sender, EventArgs e)//Смена языка в приложении
         {
-            
+            if (LangCB.SelectedIndex == 0)//Русский
+            {
+                LanguagesForAddingRecipe.isRu = true;
+            }
+
+            if (LangCB.SelectedIndex == 1)//Английский
+            {
+                LanguagesForAddingRecipe.isRu = false;
+            }
+
+            languageChanges();
+
+            help_label.Text = readHelpFile();
         }
 
         public void languageChanges()//Смена языка в приложении
@@ -669,7 +681,7 @@ namespace MainForm
 
             l.Font = new Font(startLabel.Font.FontFamily, 30, startLabel.Font.Style);
 
-            //l.Text = LanguagesForAddingRecipe.isRu ? LanguagesForAddingRecipe.haveSomeRecRu : LanguagesForAddingRecipe.haveSomeRecEn;
+            l.Text = LanguagesForAddingRecipe.isRu ? LanguagesForAddingRecipe.haveSomeRecRu : LanguagesForAddingRecipe.haveSomeRecEn;
 
             l.TextAlign = ContentAlignment.MiddleCenter;
 
